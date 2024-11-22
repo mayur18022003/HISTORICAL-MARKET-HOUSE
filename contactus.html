@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://kit.fontawesome.com/bbd157cb26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <h1>Historical E-Commerce Website</h1>
+                        <!-- Name of the web application -->
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="Aboutus.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                    <div class="user-options">
+                        <a href="#" class="user-icon" id="userIcon"><i class="fa-solid fa-user fa-xl" style="color: #ffffff; margin-right: 10px;"></i></a>
+                        <!-- Sign in icon or link -->
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="login.html">Log In</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="profile.htm">Account</a>
+
+                        </div>
+
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff; margin-left: 20px"></i></a>
+                        <!-- Cart icon or link -->
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+
+
+    <div class="article-heading">
+        <h2>Want to chat now or get a call from us?</h2>
+    </div>
+
+    <div class="containercontact">
+        <div class="contact-option">
+            <h2>Chat right now</h2>
+            <p>Our messaging assistant can quickly solve many issues or direct you to the right person or place.</p>
+            <button class="chat-button" id="open-chat-modal">Start chatting</button>
+        </div>
+        <div class="contact-option">
+            <h2>Have us call you</h2>
+            <p>We'll first get a few details about your issue and then someone will call you right away. Feel free to dicuss your issues.</p>
+            <button class="call-button" id="open-call-modal">Call me</button>
+        </div>
+    </div>
+
+    <div id="user-info-modal" class="modalcontact">
+        <div class="modal-content-chat">
+            <span class="close">&times;</span>
+            <h2>Enter Your Information</h2>
+            <form id="user-info-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <span class="validation-message" id="name-validation"></span>
+
+                <label for="gender">Gender:</label>
+                <div class="gender-toggle">
+                    <label><input type="radio" name="gender" value="male" checked> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                </div>
+
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" name="contact" required>
+                <span class="validation-message" id="contact-validation"></span>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                <span class="validation-message" id="email-validation"></span>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+                <span class="validation-message" id="address-validation"></span>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer" style="margin-top: 50px;">
+
+        <div class="footer-top">
+            <div class="containerfooter">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        <img class="imglogo" src="images/logo-removebg-preview.png" alt="Casmart logo">
+                    </a>
+
+                    <p class="footer-text">
+                        Historical Ecom is a fashion theme for presents a complete wardrobe of uniquely crafted Idols, Boxes, Mask and Heads, Candle Stand,Christian Arts, Kitchen Ware, Folk Art.
+                    </p>
+
+                    <ul class="social-list">
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-facebook-f fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-x-twitter fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-instagram fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-pinterest-p fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <ul class="footer-list">
+
+                    <li>
+                        <p class="footer-list-title">Information</p>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">About Company</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Payment Type</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Awards Winning</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">World Media Partner</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Become an Agent</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Refund Policy</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-list">
+
+                    <li>
+                        <p class="footer-list-title">Category</p>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Idols</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Boxes</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Masks And Heads</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Candle Stand</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Christian Art</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Prints And Oleographs</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-list">
+
+                    <li>
+                        <p class="footer-list-title">Help & Support</p>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Dealers & Agents</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">FAQ Information</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Return Policy</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Shipping & Delivery</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Order Tranking</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">List of Shops</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="containerfooterbtm">
+
+                <p class="copyright">
+                    &copy; 2022 <a href="#">codewithsadee</a>. All Rights Reserved
+                </p>
+
+                <ul class="footer-bottom-list">
+
+                    <li>
+                        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-bottom-link">Terms & Conditions</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-bottom-link">Sitemap</a>
+                    </li>
+
+                </ul>
+
+                <div class="payment">
+                    <p class="payment-title">We Support</p>
+
+                    <img src="images/payment-img.png" alt="Online payment logos" class="payment-img">
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <div id="congratsModalchat" class="modalcongratschat">
+        <div class="modal-content-congrats-chat">
+            <span class="close">&times;</span>
+            <div id="congratsContent"></div>
+
+            <i class="fa-solid fa-comments fa-4x fa-fade" id="congratsicon" style="color: #000000;"></i>
+
+            <p style="text-align:center;">Our team will contact you soon. <br>Also make sure to subscribe to our Newsletter to get the latest fashion and trends.</p>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if the user is logged in based on cookie data
+            const isLoggedIn = checkIfLoggedIn(); // Function to check if the user is logged in, you need to implement this
+
+            // Get user icon and cart icon elements
+            const userIcon = document.getElementById('userIcon');
+            const cartIcon = document.querySelector('.user-options a[href="cart.html"]');
+
+            // If the user is not logged in, replace user icon and cart icon with login and signup buttons
+            if (!isLoggedIn) {
+                // Create login and signup buttons
+                const loginButton = createButton('Log In', 'login.html');
+                const signupButton = createButton('Sign Up', 'signup.html');
+
+                // Replace user icon with login button
+                userIcon.replaceWith(loginButton);
+
+                // Remove cart icon
+                cartIcon.replaceWith(signupButton);
+            }
+
+            // Function to create a button element
+            function createButton(text, href) {
+                const button = document.createElement('a');
+                button.href = href;
+                button.textContent = text;
+                button.classList.add('login-btn');
+                button.classList.add('signup-btn');
+                button.classList.add('user-icon'); // Add the class to style it similar to the user icon
+                return button;
+            }
+
+            function checkIfLoggedIn() {
+                // Find the userData cookie
+                const userDataCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userData='));
+
+                // If userData cookie is found, the user is logged in
+                if (userDataCookie) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        var usersData = [];
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("user-info-modal");
+            var openButton = document.getElementById("open-chat-modal");
+            var openCallModalButton = document.getElementById("open-call-modal");
+
+            openButton.addEventListener("click", function() {
+                modal.style.display = "block";
+            });
+
+
+
+            openCallModalButton.addEventListener("click", function() {
+                modal.style.display = "block";
+            });
+
+            var closeButton = modal.querySelector(".close");
+            closeButton.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+
+
+            window.addEventListener("click", function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            var form = document.getElementById("user-info-form");
+
+            // Add event listeners for input fields to perform real-time validation
+            var nameInput = form.elements["name"];
+            var contactInput = form.elements["contact"];
+            var emailInput = form.elements["email"];
+            var addressInput = form.elements["address"];
+
+            nameInput.addEventListener("input", function() {
+                validateName(nameInput);
+            });
+
+            contactInput.addEventListener("input", function() {
+                validateContact(contactInput);
+            });
+
+            emailInput.addEventListener("input", function() {
+                validateEmail(emailInput);
+            });
+
+            addressInput.addEventListener("input", function() {
+                validateAddress(addressInput);
+            });
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission
+                if (validateForm(form)) {
+                    var name = form.elements["name"].value; // Get the name from the form
+                    saveUserInfo(form);
+                    modal.style.display = "none";
+                    openCongratulatoryModal(name);
+                }
+            });
+        });
+
+        function validateName(inputField) {
+            var name = inputField.value;
+            var nameValidation = document.getElementById("name-validation");
+
+            if (!/^[a-zA-Z\s]+$/.test(name)) {
+                nameValidation.textContent = "Please enter a valid name without numbers.";
+                nameValidation.style.display = "block";
+                return false;
+            } else {
+                nameValidation.style.display = "none";
+                return true;
+            }
+        }
+
+        function validateContact(inputField) {
+            var contact = inputField.value;
+            var contactValidation = document.getElementById("contact-validation");
+
+            if (!/^\d+$/.test(contact)) {
+                contactValidation.textContent = "Please enter a valid contact number without letters.";
+                contactValidation.style.display = "block";
+                return false;
+            } else {
+                contactValidation.style.display = "none";
+                return true;
+            }
+        }
+
+        function validateEmail(inputField) {
+            var email = inputField.value;
+            var emailValidation = document.getElementById("email-validation");
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                emailValidation.textContent = "Please enter a valid email address.";
+                emailValidation.style.display = "block";
+                return false;
+            } else {
+                emailValidation.style.display = "none";
+                return true;
+            }
+        }
+
+        function validateAddress(inputField) {
+            var address = inputField.value;
+            var addressValidation = document.getElementById("address-validation");
+
+            if (!address.trim()) {
+                addressValidation.textContent = "Please enter your address.";
+                addressValidation.style.display = "block";
+                return false;
+            } else {
+                addressValidation.style.display = "none";
+                return true;
+            }
+        }
+
+        function validateForm(form) {
+            // Perform validation for all fields
+            var nameIsValid = validateName(form.elements["name"]);
+            var contactIsValid = validateContact(form.elements["contact"]);
+            var emailIsValid = validateEmail(form.elements["email"]);
+            var addressIsValid = validateAddress(form.elements["address"]);
+
+            // Form is valid only if all fields are valid
+            return nameIsValid && contactIsValid && emailIsValid && addressIsValid;
+        }
+
+        function saveUserInfo(form) {
+            var userInfo = {
+                name: form.elements["name"].value,
+                gender: form.elements["gender"].value,
+                contact: form.elements["contact"].value,
+                email: form.elements["email"].value,
+                address: form.elements["address"].value
+            };
+            usersData.push(userInfo);
+
+            // Convert userInfo to JSON and save it or perform any other action
+            console.log(userInfo);
+        }
+
+        function openCongratulatoryModal(name) {
+            var congratsModal = document.getElementById("congratsModalchat");
+            var congratsContent = document.getElementById("congratsContent");
+
+            congratsContent.innerHTML = `Thanks <strong>${name}</strong>, `;
+
+            congratsModal.style.display = "block";
+
+            setTimeout(function() {
+                congratsModal.style.display = "none";
+            }, 5000);
+        }
+    </script>
+
+
+</body>
+
+</html>

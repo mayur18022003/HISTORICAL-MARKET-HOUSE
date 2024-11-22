@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read More</title>
+    <script src="https://kit.fontawesome.com/bbd157cb26.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <h1>Historical E-Commerce Website</h1>
+                        <!-- Name of the web application -->
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="Aboutus.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+
+                    <div class="user-options">
+
+                        <a href="#" class="user-icon" id="userIcon"><i class="fa-solid fa-user fa-xl" style="color: #ffffff; margin-right: 10px;"></i></a>
+                        <!-- Sign in icon or link -->
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="login.html">Log In</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="profile.htm">Account</a>
+
+                        </div>
+
+
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff; margin-left: 20px;"></i></a>
+                        <!-- Cart icon or link -->
+
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <div id="article-content-readmore" class="container">
+        <!-- Dynamic content will be inserted here -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve article ID from URL query parameter
+            const params = new URLSearchParams(window.location.search);
+            const articleId = params.get("id");
+
+            // Sample array of articles
+            const articles = [{
+                    id: "1",
+                    image: "images/CHOLA DYNASTY (300 BCE – 1279 CE) - TEMPLE ARCHITECTURE.jpg",
+                    date: "January 1, 2024",
+                    heading: "CHOLA DYNASTY (300 BCE – 1279 CE) - TEMPLE ARCHITECTURE",
+                    content: "Cholas along with the Cheras and Pandyas were the oldest and three most prominent kingdoms who ruled the ancient Tamil Nadu during the Sangam period. The Chola dynasty whose heartland was the fertile valley of Cauvery with  Thanjavur as its capital was one of the longest-ruling dynasties of South India – over 1500 years. The Chola dynasty spread to even parts of South East Asia – Maldives, Srilanka Malay Peninsula and Indonesia. Rajaraja Chola I and Rajendra Chola I were the greatest rulers of the Chola dynasty. The Chola kings were avid builders and continued the temple building traditions (Dravidian style) of the Pallavas. The Chola temple architecture is notable as much for its magnificence and grandeur as it is for its workmanship."
+                },
+                {
+                    id: "2",
+                    image: "images/PALLAVA DYNASTY (275 CE TO 897 CE).jpg",
+                    date: "February 25, 2024",
+                    heading: "PALLAVA DYNASTY (275 CE TO 897 CE)",
+                    content: "Pallava dynasty that ruled the South Eastern part of India with Kanchipuram as their capital, was one of the notable dynasties that ruled during the same time as Mauryas and Guptas in North India. Pallavas were the most noted for temple architecture. They were instrumental in the transition from rock-cut architecture to stone temples. The most noted architectural accomplishments of Pallavas are at Mahabalipuram, which under the Pallava reign became an important centre of art, architecture and literature.Pancha Ratha (Five chariots) are monolithic stone chariot structures dedicated to the five Pandava brothers and their wife Draupadi. Structurally and architecturally all the rathas are sculpted differently from others."  
+                },
+                {
+                    id: "3",
+                    image: "images/MAURYAN PERIOD (340 BC to 232 BC).jpg",
+                    date: "March 28, 2024",
+                    heading: "MAURYAN PERIOD (340 BC to 232 BC)",
+                    content: "Mauryan period (340 BC to 232 BC) The first big empire after the Vedic age, was the first one to rule over most of the Indian subcontinent. The art and architecture during this period except for the Pataliputra palace, is mainly Ashokan. It can be classified mainly into Stupas, Pillars, Caves, Palaces and Pottery.The Art during the Mauryan era witnessed a major transformation – from use of wood to stone and also marked an impressive step forward in Indian stone sculpture.One of the finest examples of Mauryan sculpture, the magnificent Lion Capital at Sarnath has been adopted as the National Emblem of the modern Indian Republic. Samrat Ashoka who had embraced Buddhism, constructed numerous Stupas all over the country to celebrate the achievements of Gautam Buddha.The Stupa at Sanchi is one of the greatest examples of Stupas built in that period."  
+                },
+                
+                // Add more articles as needed
+            ];
+
+            // Find the article with the matching ID
+            const article = articles.find(article => article.id === articleId);
+
+            if (article) {
+                // Create HTML content for the article
+                const articleHTML = `
+            <img src="${article.image}" alt="Article Image" style="margin-top:100px">
+            
+            <div class="article-details-readmore">
+                <p class="date">${article.date}</p>
+                <h3 class="heading">${article.heading}</h3>
+                <p>${article.content}</p>
+            </div>
+        `;
+
+                // Insert the article content into the page
+                document.getElementById("article-content-readmore").innerHTML = articleHTML;
+            } else {
+                // Display a message if the article is not found
+                document.getElementById("article-content-readmore").innerHTML = "<p>Article not found</p>";
+            }
+        });
+    </script>
+    
+
+</body>
+
+</html>

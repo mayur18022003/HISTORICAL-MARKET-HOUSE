@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://kit.fontawesome.com/bbd157cb26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <h1>Historical E-Commerce Website</h1>
+                        <!-- Name of the web application -->
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="Aboutus.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                    <div class="user-options">
+                        <a href="#" class="user-icon" id="userIcon"><i class="fa-solid fa-user fa-xl" style="color: #ffffff; margin-right: 10px;"></i></a>
+                        <!-- Sign in icon or link -->
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="login.html">Log In</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="profile.htm">Account</a>
+
+                        </div>
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;margin-left: 20px "></i></a>
+                        <!-- Cart icon or link -->
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+
+
+    <div class="profile-info">
+        <h2>Search Items</h2>
+        <input type="text" id="search-input" style="width: 150px; padding-top:10px" placeholder="Enter search keyword...">
+        <button id="search-btn">Search</button>
+        <h2>Categories</h2>
+        <div class="category-list">
+            <label><input type="checkbox" name="category" value="sunglasses">Idols</label>
+            <label><input type="checkbox" name="category" value="active-outdoor">Boxes</label>
+            <label><input type="checkbox" name="category" value="exclusive-footwear">Masks And Heads</label>
+            <label><input type="checkbox" name="category" value="jewellery">Candle Stand</label>
+            <label><input type="checkbox" name="category" value="sport-cap">Christian Art</label>
+            <label><input type="checkbox" name="category" value="prints-oleographs">Prints And Oleographs</label>
+            <label><input type="checkbox" name="category" value="kitchenware">KitchenWare</label>
+            <label><input type="checkbox" name="category" value="folk-art">Folk Art</label>
+        </div>
+        <h2>Price Range</h2>
+        <div class="price-range">
+            <label><input type="checkbox" name="price" value="0-10000">&#x20b9; 0 - &#x20b9; 10000</label>
+            <label><input type="checkbox" name="price" value="10000-20000">&#x20b9; 10000 - &#x20b9; 20000</label>
+            <label><input type="checkbox" name="price" value="20000-30000">&#x20b9; 20000 - &#x20b9; 30000</label>
+            <label><input type="checkbox" name="price" value="30000-40000">&#x20b9; 30000 - &#x20b9; 40000</label>
+            <label><input type="checkbox" name="price" value="40000-50000">&#x20b9; 40000 - &#x20b9; 50000</label>
+        </div>
+    </div>
+
+
+
+    <section class="shopcontainer">
+        <div class="containerproduct">
+            <div class="product-cards" id="productContainer">
+                <!-- Product cards will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-product-image" src="" alt="Product Image">
+            <div class="product-details">
+                <h2>Product Name</h2>
+                <p>Description of the product.</p>
+                <div class="price-section">
+                    <span class="original-price">&#x20b9; 50,000</span>
+                    <span class="discounted-price">&#x20b9;40,000</span>
+                    <span class="discount-percentage">20% OFF</span>
+                </div>
+                <div class="quantity">
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-input">
+
+                        <p id="quantity"><strong> 1</strong>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="total-price-section" style="display: none;">
+                    <p><span id="total-price">&#x20b9;50,000</span></p>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="congratsModal" class="modalcongrats">
+        <div class="modal-content-congrats">
+            <span class="closecongrats" onclick="closeCongratsModal()">&times;</span>
+            <div id="congratsContent">
+                <h2>Congratulations!</h2>
+                <div class="congratsicon">
+                    <i class="fa-solid fa-circle-check fa-beat fa-4x" style="color: #00ff1e;"></i></div>
+                <p>Product added to the cart
+                    <br> Visit your cart section to place an order !!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer" style="margin-left: 300px;">
+
+        <div class="footer-top">
+            <div class="containerfooter">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        <img class="imglogo" src="images/logo-removebg-preview.png" alt="Casmart logo">
+                    </a>
+
+                    <p class="footer-text">
+                        Historical Ecom is a fashion theme for presents a complete wardrobe of uniquely crafted Idols, Boxes, Mask and Heads, Candle Stand,Christian Arts, Kitchen Ware, Folk Art.    
+                </p>
+
+                    <ul class="social-list">
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-facebook-f fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-x-twitter fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-instagram fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <i class="fa-brands fa-pinterest-p fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <ul class="footer-list">
+
+                    <li>
+                        <p class="footer-list-title">Information</p>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">About Company</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Payment Type</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Awards Winning</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">World Media Partner</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Become an Agent</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Refund Policy</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-list">
+
+                    <li>
+                        <p class="footer-list-title">Category</p>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Idols</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Boxes</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Masks And Heads</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Candle Stand</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Christian Art</a>
+                    </li>
+
+                    <li>
+                        <a href="# " class="footer-link ">Prints And Oleographs</a>
+                    </li>
+
+                </ul>
+
+                <ul class="footer-list">
+
+                    <li>
+                        <p class="footer-list-title">Help & Support</p>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Dealers & Agents</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">FAQ Information</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Return Policy</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Shipping & Delivery</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">Order Tranking</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-link">List of Shops</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="containerfooterbtm">
+
+                <p class="copyright">
+                    &copy; 2022 <a href="#">Mayur Kumbhar</a>. All Rights Reserved
+                </p>
+
+                <ul class="footer-bottom-list">
+
+                    <li>
+                        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-bottom-link">Terms & Conditions</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="footer-bottom-link">Sitemap</a>
+                    </li>
+
+                </ul>
+
+                <div class="payment">
+                    <p class="payment-title">We Support</p>
+
+                    <img src="images/payment-img.png" alt="Online payment logos" class="payment-img">
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <div class="modal-container" id="modalContainer">
+        <div class="modal">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="modal-content">
+                <img src="images\product-1.jpg" alt="Product Image" id="productImage">
+                <div class="product-details">
+                    <h2 id="productName">Product Name</h2>
+                    <p id="originalPrice">Original Price: $50</p>
+                    <p id="discountedPrice">Discounted Price: $40</p>
+                    <p id="discountPercentage">Discount Percentage: 20% OFF</p>
+                    <div class="quantity">
+                        <label for="quantity">Quantity: 1</label>
+                    </div>
+                    <!--<p id="totalPrice" class="cart-price">Total Price: $40</p>-->
+                    <button id="addToCartBtn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="app.js">
+    </script>
+</body>
+
+</html>

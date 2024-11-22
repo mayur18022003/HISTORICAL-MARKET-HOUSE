@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <script src="https://kit.fontawesome.com/bbd157cb26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <h1>Historical E-Commerce Website</h1>
+                        <!-- Name of the web application -->
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="Aboutus.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+
+                    <div class="user-options">
+
+                        <a href="#" class="user-icon" id="userIcon"><i class="fa-solid fa-user fa-xl" style="color: #ffffff; margin-right: 10px;"></i></a>
+                        <!-- Sign in icon or link -->
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="login.html">Log In</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="profile.htm">Account</a>
+
+                        </div>
+
+
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff; margin-left: 20px;"></i></a>
+                        <!-- Cart icon or link -->
+
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="head-logo">
+
+        <div class="containerorder">
+            <div>
+                <div class="logolog-order">
+                    <img src="images\logo-removebg-preview.png" alt="Ecom App Logo">
+                </div>
+            </div>
+
+            <h2>Order Details</h2>
+
+
+            <div class="user-details">
+                <img src="images/profile2.jpg" alt="Profile Picture">
+                <div class="user-info">
+                    <p>Name: <span id="user-name"></span></p>
+                    <p>Email: <span id="user-email"></span></p>
+                    <p>Phone: <span id="user-phone"></span></p>
+                    <p>Address: <span id="user-address"></span></p>
+
+                </div>
+                <img src="images\confirmation.jpeg" alt="Confirmation Image" class="confirmation-image">
+            </div>
+
+
+
+
+
+            <hr>
+
+            <!-- Display order details -->
+            <div id="order-details"></div>
+
+            <p class="totalorder" style=" background-color: orange; padding:20px;">Total Price: ₹<span id="total-price-order"></span></p>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Retrieve user data from cookies
+                const userDataCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userData='));
+                const userData = JSON.parse(decodeURIComponent(userDataCookie.split('=')[1]));
+
+                // Display user information
+                document.getElementById('user-name').textContent = userData.name;
+                document.getElementById('user-email').textContent = userData.email;
+                document.getElementById('user-phone').textContent = userData.contact;
+                document.getElementById('user-address').textContent = userData.address;
+
+                // Retrieve cart items from local storage
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const orderDetailsContainer = document.getElementById('order-details');
+
+                // Initialize total price
+                let totalPrice = 0;
+
+                // Iterate over cart items
+                cartItems.forEach(item => {
+                    // Calculate total price for each item
+                    const itemTotalPrice = parseFloat(item.discountedPrice.replace('Discounted Price:', '')) * item.quantity;
+                    totalPrice += itemTotalPrice;
+
+                    // Create an object to hold order data for the current item
+                    const orderData = {
+                        email: userData.email, // Set email from userData
+                        productName: item.productName,
+                        quantity: item.quantity,
+                        totalPrice: itemTotalPrice
+                    };
+
+                    // Display order details only if the email matches
+                    if (userData.email === orderData.email) {
+                        const orderItem = document.createElement('div');
+                        orderItem.classList.add('order-item');
+
+                        // Display product image
+                        const img = document.createElement('img');
+                        img.src = item.productImage;
+                        orderItem.appendChild(img);
+
+                        // Display product name, quantity, and total price
+                        const details = document.createElement('div');
+                        details.classList.add('order-item-details');
+                        details.innerHTML = `
+                <p>Product: ${item.productName}</p>
+                <p>Quantity: ${item.quantity}</p>
+                <p>Total Price: ₹${itemTotalPrice.toFixed(2)}</p>
+            `;
+                        orderItem.appendChild(details);
+
+                        orderDetailsContainer.appendChild(orderItem);
+                    }
+
+                    // Save order data to local storage
+                    localStorage.setItem('orderData', JSON.stringify(orderData));
+                });
+
+                // Display total price
+                document.getElementById('total-price-order').textContent = totalPrice.toFixed(2);
+
+                console.log(userData);
+                const orderData = localStorage.getItem('orderData');
+                console.log(orderData);
+            });
+        </script>
+
+
+</body>
+
+</html>

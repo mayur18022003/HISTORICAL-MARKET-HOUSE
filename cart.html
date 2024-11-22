@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://kit.fontawesome.com/bbd157cb26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <h1>Historical E-Commerce Website</h1>
+                        <!-- Name of the web application -->
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="Aboutus.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                    <div class="user-options">
+                        <a href="#" class="user-icon" id="userIcon"><i class="fa-solid fa-user fa-xl" style="color: #ffffff; margin-right: 10px;"></i></a>
+                        <!-- Sign in icon or link -->
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="login.html">Log In</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="profile.htm">Account</a>
+
+                        </div>
+
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;margin-left: 20px "></i></a>
+                        <!-- Cart icon or link -->
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="empty"></div>
+
+
+    <div id="cart-items-container"></div>
+    <p id="total-price">Total Price: </p>
+    <button id="checkout-btn">Checkout</button>
+
+    <div id="confirmation-modal" class="modalcart">
+        <div class="modal-content-cart">
+            <span class="close">&times;</span>
+            <p style="text-align: center;">Do you want to remove this item from the cart? <br></p>
+            <i class="fa-solid fa-trash fa-bounce fa-4x" style="color: #000000; margin-left:300px; margin-top:40px;"></i>
+            <div style="margin-left:250px; margin-top:40px;">
+                <button id="confirm-remove">Yes</button>
+                <button id="cancel-remove">Close</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="modal-checkout">
+        <!-- Add inline style to hide the modal by default -->
+        <div class="modal-content-checkout">
+            <span class="close">&times;</span>
+            <p style="margin-bottom:10px; text-align:center">Please select a payment method:</p>
+            <button id="net-banking">Cash On Delivery</button>
+            <button id="upi">UPI</button>
+            <button id="credit-debit">Credit/Debit Card</button>
+            <button id="cash-on-delivery">QR Code</button>
+        </div>
+    </div>
+
+    <div id="empty-cart-modal" class="modalcart">
+        <div class="modal-content-cart">
+            <span class="close">&times;</span>
+            <p style="text-align:center; margin-bottom:20px">Your cart is empty. Do you want to continue shopping?</p>
+            <button id="continue-shopping">Yes, take me to the shop</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.getElementById('net-banking').addEventListener('click', function() {
+            // Retrieve the user data from cookies
+            const userDataCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userData='));
+
+            // If userData cookie is not found, redirect the user to the login page
+            if (!userDataCookie) {
+                alert('You are not logged in.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Retrieve cart items from session storage
+            const cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+
+            // Store cart items in local storage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Redirect to orders page
+            window.location.href = 'order.html';
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const userDataCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userData='));
+
+            // If userData cookie is not found, redirect the user to the login page
+            if (!userDataCookie) {
+                alert('You are not logged in.');
+                window.location.href = 'login.html';
+            }
+            checkEmptyCart();
+            displayCartItems();
+
+            setupCheckoutModal();
+        });
+
+        function checkEmptyCart() {
+            var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+            var totalPriceElement = document.getElementById("total-price");
+            var checkoutButton = document.getElementById("checkout-btn");
+
+            if (cartItems.length === 0) {
+                var emptyCartModal = document.getElementById("empty-cart-modal");
+                emptyCartModal.style.display = "block";
+                var continueShoppingBtn = document.getElementById("continue-shopping");
+                continueShoppingBtn.addEventListener("click", function() {
+                    window.location.href = "shop.html"; // Change the URL to your shop page
+                });
+
+                // Hide total price and checkout button
+                totalPriceElement.style.display = "none";
+                checkoutButton.style.display = "none";
+            } else {
+                // Show total price and checkout button
+                totalPriceElement.style.display = "block";
+                checkoutButton.style.display = "block";
+            }
+        }
+
+        function setupCheckoutModal() {
+            var checkoutBtn = document.getElementById("checkout-btn");
+            var modal = document.getElementById("checkout-modal");
+            var closeBtn = modal.querySelector(".close");
+
+            checkoutBtn.addEventListener("click", function() {
+                modal.style.display = "block";
+            });
+
+            closeBtn.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
+
+        function displayCartItems() {
+            var cartItemsContainer = document.getElementById("cart-items-container");
+            cartItemsContainer.innerHTML = ""; // Clear previous items
+
+            // Retrieve cart items from session storage
+            var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+
+            // Loop through each cart item and display it
+            cartItems.forEach(function(item) {
+                var cartItemDiv = createCartItemElement(item);
+                // Prepend the cart item to the container
+                cartItemsContainer.appendChild(cartItemDiv);
+            });
+
+            // Calculate and display total price
+            calculateTotalPrice();
+        }
+
+        function createCartItemElement(item) {
+            var cartItemDiv = document.createElement("div");
+            cartItemDiv.classList.add("cart-item");
+
+            // Create elements to display product information
+            var img = document.createElement("img");
+            img.src = item.productImage;
+
+            var itemInfoDiv = document.createElement("div");
+            itemInfoDiv.classList.add("cart-item-info");
+
+            var h2 = document.createElement("h2");
+            h2.textContent = item.productName;
+
+            var pDescription = document.createElement("p");
+            pDescription.textContent = item.productDescription;
+            console.log(item.discountedPrice)
+
+            var pPrice = document.createElement("p");
+            pPrice.classList.add("cart-item-price");
+            pPrice.textContent = item.discountedPrice;
+
+            // Quantity input with plus and minus symbols
+            var quantityDiv = document.createElement("div");
+            quantityDiv.classList.add("quantity");
+
+            var decrementBtn = document.createElement("button");
+            decrementBtn.textContent = "-";
+            decrementBtn.setAttribute("class", "decrement-btn");
+            decrementBtn.addEventListener("click", function() {
+                updateQuantity(item, -1);
+                calculateTotalPrice();
+            });
+
+            var quantityInput = document.createElement("input");
+            quantityInput.type = "text";
+            quantityInput.value = item.quantity; // Assigning initial quantity value to the input
+            quantityInput.readOnly = true;
+            quantityInput.setAttribute("class", "quantity-input");
+
+            var incrementBtn = document.createElement("button");
+            incrementBtn.textContent = "+";
+            incrementBtn.setAttribute("class", "increment-btn");
+            incrementBtn.addEventListener("click", function() {
+                updateQuantity(item, 1);
+                calculateTotalPrice();
+            });
+
+            quantityDiv.appendChild(decrementBtn);
+            quantityDiv.appendChild(quantityInput);
+            quantityDiv.appendChild(incrementBtn);
+
+            // Price after updating quantity
+            var pUpdatedPrice = document.createElement("p");
+            pUpdatedPrice.classList.add("updated-price");
+            pUpdatedPrice.textContent = "Total Price:  ₹" + (parseFloat(item.discountedPrice.replace("Discounted Price:", "")) * item.quantity);
+
+            // Append elements to cart item container
+            itemInfoDiv.appendChild(h2);
+            itemInfoDiv.appendChild(pDescription);
+            itemInfoDiv.appendChild(pPrice);
+            itemInfoDiv.appendChild(document.createTextNode("Quantity: "));
+            itemInfoDiv.appendChild(quantityDiv); // Append quantity paragraph
+            itemInfoDiv.appendChild(pUpdatedPrice); // Append updated price paragraph
+
+            // Create buttons for "Order" and "Remove"
+
+
+            cartItemDiv.appendChild(img);
+            cartItemDiv.appendChild(itemInfoDiv);
+
+            return cartItemDiv;
+
+        }
+
+        function calculateTotalPrice() {
+            var totalPrice = 0;
+            var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+            cartItems.forEach(function(item) {
+                // Remove the currency symbol "₹" before parsing the discounted price
+                var discountedPrice = item.discountedPrice.replace("Discounted Price:", "");
+                totalPrice += parseFloat(discountedPrice) * item.quantity;
+            });
+            // Display the total price with the currency symbol
+            document.getElementById("total-price").textContent = "Total Price: ₹" + totalPrice;
+        }
+
+
+        function updateQuantity(item, increment) {
+            var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+            cartItems.forEach(function(cartItem) {
+                if (cartItem.productName === item.productName) {
+                    cartItem.quantity += increment;
+                    if (cartItem.quantity < 1) {
+                        showConfirmationModal(cartItem);
+                    }
+                }
+            });
+
+            sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+            displayCartItems();
+        }
+
+        function showConfirmationModal(item) {
+            var modal = document.getElementById("confirmation-modal");
+            modal.style.display = "block";
+
+            var confirmRemoveBtn = document.getElementById("confirm-remove");
+            var cancelRemoveBtn = document.getElementById("cancel-remove");
+
+            confirmRemoveBtn.onclick = function() {
+                removeCartItem(item.productName);
+                modal.style.display = "none";
+            };
+
+            cancelRemoveBtn.onclick = function() {
+                modal.style.display = "none";
+            };
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+
+        function removeCartItem(productName) {
+            var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+            cartItems = cartItems.filter(function(item) {
+                return item.productName !== productName;
+            });
+            sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+            calculateTotalPrice();
+            displayCartItems();
+            checkEmptyCart();
+        }
+
+        function openOrderModal(productName) {
+            // Implement your code to open a modal for order confirmation
+            alert("Your order for " + productName + " will arrive at your destination as per your address in the profile.");
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            // Retrieve the user data from cookies
+
+            const userDataCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userData='));
+
+            // If userData cookie is not found, redirect the user to the login page
+            if (!userDataCookie) {
+                alert('You are not logged in.');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+
+
+
+</body>
+
+</html>

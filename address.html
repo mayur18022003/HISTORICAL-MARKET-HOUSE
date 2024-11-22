@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address</title>
+    <script src="https://kit.fontawesome.com/bbd157cb26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <h1>Historical E-Commerce Website</h1>
+                        <!-- Name of the web application -->
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="Aboutus.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+
+                    <div class="user-options">
+                        <a href="#" class="user-icon"><i class="fa-solid fa-user fa-xl" style="color: #ffffff; margin-right:10px;"></i></a>
+                        <!-- Sign in icon or link -->
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="login.html">Log In</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="profile.html">Account</a>
+                        </div>
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff; margin-left:20px;"></i></a>
+                        <!-- Cart icon or link -->
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="containeraddress">
+        <h2>Edit Address</h2>
+        <div class="profile-info-address">
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+            <label for="email">Email:</label>
+            <input type="text" id="email" disabled>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" style="cursor:pointer">
+            <button id="submitBtn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve user data from cookies
+        const userDataCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('userData='));
+        const userData = JSON.parse(decodeURIComponent(userDataCookie.split('=')[1]));
+
+        // Populate user information
+        document.getElementById('name').value = userData.name;
+        document.getElementById('email').value = userData.email;
+        document.getElementById('phone').value = userData.contact;
+        document.getElementById('address').value = userData.address;
+
+
+
+
+        // Submit button functionality
+        document.getElementById('submitBtn').addEventListener('click', function() {
+
+            if (!userDataCookie) {
+                alert('User data not found.');
+                return;
+            }
+
+
+            // Update name, contact number, and address
+            userData.name = document.getElementById('name').value;
+            userData.contact = document.getElementById('phone').value;
+            userData.address = document.getElementById('address').value;
+            // Update the user data in local storage
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+
+            // Update the cookie with the updated user data
+            document.cookie = 'userData=' + encodeURIComponent(JSON.stringify(userData));
+            console.log(userData)
+                // Show success message and redirect
+            alert('Address updated successfully!');
+            window.location.href = 'profile.htm';
+        });
+    </script>
+</body>
+
+</html>
